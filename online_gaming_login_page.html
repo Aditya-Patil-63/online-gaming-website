@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Games Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url("BackGround_Image.jpg") no-repeat center center/cover;
+            color: #f30b2a;
+            background-color: #0b0a0a;
+            background-image: url(BackGround_Image.jpg);
+        }
+        .login-container {
+            background: rgba(0, 0, 0, 0); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); 
+            text-align: center;
+            width: 350px;
+        }
+        .login-container h1 {
+            margin-bottom: 30px;
+            color: #bb2222;
+            font-size: 28px;
+        }
+        .login-container em {
+            font-weight: bold;
+            color: #f40808;
+        }
+        .login-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ec0d0d;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(200, 130, 130, 0.2); 
+            color: #ffffff;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #dac6c8;
+            color: #f80808;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.8s ease;
+        }
+        .login-container button:hover {
+            background-color: #7d2020;
+        }
+        .sign-up {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #e41010;
+        }
+        .sign-up a {
+            color: #560cea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        form {
+            margin: 0 auto;
+        }
+        input::placeholder {
+            color: #c4c0c0;
+        }
+        input:focus, button:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+    </style>
+</head>
+<script>
+function validateform(event) {
+    event.preventDefault();
+
+    const form = document.myform;
+    const name = form.name;
+    const email = form.email;
+    const password = form.password;
+
+    document.querySelectorAll(".error-msg").forEach(msg => msg.remove());
+
+    let isValid = true;
+
+    function showError(input, message) {
+        const msg = document.createElement("div");
+        msg.className = "error-msg";
+        msg.style.color = "#ff5252";
+        msg.style.fontSize = "12px";
+        msg.style.marginBottom = "10px";
+        msg.textContent = message;
+        input.insertAdjacentElement("afterend", msg);
+        isValid = false;
+    }
+
+    if (name.value.trim() === "") {
+        showError(name, "⚠ Please enter your name");
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email.value.trim())) {
+        showError(email, "⚠ Enter a valid email address");
+    }
+
+    if (password.value.length < 6) {
+        showError(password, "⚠ Password must be at least 6 characters");
+    }
+
+   if (isValid) {
+        window.location.href = "http://127.0.0.1:5500/Project/Online_Gaming.html";
+    }
+}
+</script>
+
+
+<body>    
+    <div class="login-container">
+        <h1><em>Gamer Zone</em></h1>
+        <form name="myform" method="post" onsubmit="validateform(event)" id="loginForm">
+            Name: <input type="text" name="name" placeholder="Enter your name">
+            Email: <input type="text" name="email" placeholder="Enter your email">  
+            Password: <input type="password" name="password" placeholder="Enter your password">
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
